@@ -13,7 +13,7 @@ for FOLDER in "$TARGETDIR"/*; do
     NAME=`basename "$FOLDER"`
     echo $NAME
 
-    convert -limit memory 2GiB "$FOLDER/*.{jpg,jpeg,png}" "$OUTPUTDIR/$NAME.pdf"
+    convert -limit memory 2GiB "$FOLDER/*.{jpg,jpeg,png,JPG,JPEG,PNG}" "$OUTPUTDIR/$NAME.pdf"
 
     [[ $? -eq 0 ]] && trash "$FOLDER"
 
