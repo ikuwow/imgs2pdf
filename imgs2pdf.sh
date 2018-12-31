@@ -1,21 +1,20 @@
 #!/bin/bash
 
-TARGETDIR=$(cd "$1";pwd)
+TARGETDIR=$(cd "$1" && pwd)
 OUTPUTDIR=$TARGETDIR
 
 [[ ! -d "$OUTPUTDIR" ]] && mkdir "$OUTPUTDIR"
 
-echo $TARGETDIR
+echo "$TARGETDIR"
 for FOLDER in "$TARGETDIR"/*; do
 
     [[ ! -d "$FOLDER" ]] && continue
 
-    NAME=`basename "$FOLDER"`
-    echo $NAME
+    NAME=$(basename "$FOLDER")
+    echo "$NAME"
 
-    convert -limit memory 2GiB "$FOLDER/*.{jpg,jpeg,png,JPG,JPEG,PNG}" "$OUTPUTDIR/$NAME.pdf"
-
-    [[ $? -eq 0 ]] && trash "$FOLDER"
+    convert -limit memory 2GiB "$FOLDER/*.{jpg,jpeg,png,JPG,JPEG,PNG}" "$OUTPUTDIR/$NAME.pdf" \
+        && trash "$FOLDER"
 
 done
 
