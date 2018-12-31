@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 TARGETDIR=$(cd "$1" && pwd)
 OUTPUTDIR=$TARGETDIR
 
